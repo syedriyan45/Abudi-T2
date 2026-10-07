@@ -1,5 +1,22 @@
+// Firebase / Firestore
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+  import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCHmFL2Mq8h84tSM0DhMI43mf7rgcIeuqg",
+    authDomain: "abudi-cafe.firebaseapp.com",
+    projectId: "abudi-cafe",
+    storageBucket: "abudi-cafe.firebasestorage.app",
+    messagingSenderId: "1051106284305",
+    appId: "1:1051106284305:web:510db4835c5f91d0bc72b0"
+  };
+
+  const firebaseApp = initializeApp(firebaseConfig);
+  const db = getFirestore(firebaseApp);
+
 (() => {
   "use strict";
+
 
   const root = document.documentElement;
   const cart = new Map();
@@ -2686,15 +2703,11 @@
      SUBMIT ORDER
   ========================================================= */
 
-  function submitOrder(
+  async function submitOrder(
     items,
     total,
     customer
   ) {
-
-    /*
-      Final availability check.
-    */
 
     const unavailableItems =
       items.filter(
@@ -2704,164 +2717,65 @@
           )
       );
 
-
-    if (
-      unavailableItems.length
-    ) {
-
+    if (unavailableItems.length) {
       window.alert(
         "Sorry, these items are currently unavailable: " +
-        unavailableItems
-          .map(
-            item =>
-              item.name
-          )
-          .join(", ")
+        unavailableItems.map(item => item.name).join(", ")
       );
-
-      checkoutStep =
-        false;
-
+      checkoutStep = false;
       renderCart();
-
       return;
-
     }
-
 
     const order = {
-
-      id:
-        `ORD-${Date.now()
-          .toString(36)
-          .toUpperCase()}`,
-
-      /*
-        Table comes from QR URL.
-      */
-
-      table:
-        TABLE_NUMBER,
-
-      items:
-        items.map(
-          ({
-            name,
-            price,
-            quantity
-          }) => ({
-
-            name,
-
-            price,
-
-            quantity
-
-          })
-        ),
-
+      id: `ORD-${Date.now().toString(36).toUpperCase()}`,
+      table: TABLE_NUMBER,
+      items: items.map(({ name, price, quantity }) => ({
+        name,
+        price,
+        quantity
+      })),
       total,
-
       customer,
-
-      placedAt:
-        new Date()
-          .toISOString(),
-
-      status:
-        "new"
-
+      placedAt: new Date().toISOString(),
+      status: "new"
     };
 
-
-    let orders = [];
-
-
     try {
-
-      orders =
-        JSON.parse(
-          localStorage.getItem(
-            ORDERS_KEY
-          ) || "[]"
-        );
-
-
-      if (
-        !Array.isArray(
-          orders
-        )
-      ) {
-
-        orders = [];
-
-      }
-
-    } catch {
-
-      orders = [];
-
+      // Save centrally in Firestore so the kitchen can see it
+      // from any phone, tablet or computer.
+      await setDoc(
+        doc(db, "orders", order.id),
+        order
+      );
+    } catch (error) {
+      console.error("Firebase order error:", error);
+      window.alert(
+        "Order could not be sent to the kitchen. Please check your internet connection and try again."
+      );
+      return;
     }
 
-
-    orders.push(
-      order
-    );
-
-
-    localStorage.setItem(
-      ORDERS_KEY,
-      JSON.stringify(
-        orders
-      )
-    );
-
-
-    /*
-      Tell other code on this page.
-    */
-
+    // Keep the old local event for any code running on this same page.
     window.dispatchEvent(
       new CustomEvent(
         "abudi-orders-updated",
-        {
-          detail:
-            order
-        }
+        { detail: order }
       )
     );
 
-
-    /*
-      Clear cart.
-    */
-
     cart.clear();
-
-
-    checkoutStep =
-      false;
-
+    checkoutStep = false;
 
     customerInfo = {
-
       name: "",
-
       phone: "",
-
       notes: ""
-
     };
 
-
     fieldErrors = {};
-
-
     renderCart();
-
-
     closeCart();
-
 
     window.alert(
       `Thanks ${customer.name}! Order ${order.id} has been sent to the kitchen.`
