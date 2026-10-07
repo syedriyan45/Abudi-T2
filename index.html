@@ -1,0 +1,1486 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Order handcrafted pizzas, comfort food, milkshakes and mojitos at ABUDI Coffee Roasters." />
+  <title>ABUDI Coffee Roasters — Order</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="root"><div class="min-h-svh" data-testid="cafe-order-app"><div class="site-shell min-h-svh"><header class="mx-auto flex max-w-7xl items-center justify-between border-b border-[var(--line-soft)] px-5 py-5 lg:px-8" data-testid="site-header"><div class="flex items-center gap-3" data-testid="brand-logo"><div class="flex size-10 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--gold)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coffee size-5" aria-hidden="true"><path d="M10 2v2"></path><path d="M14 2v2"></path><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"></path><path d="M6 2v2"></path></svg></div><div><div class="font-heading text-lg font-semibold tracking-tight">ABUDI</div><div class="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--copper)]">Coffee Roasters</div></div></div><div class="flex items-center gap-2"><div class="hidden items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--surface)] px-3 py-2 font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--copper)] sm:flex" data-testid="table-number-display"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-utensils size-3.5" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg> Table <span style="display: contents;">2</span></div><button type="button" class="flex size-10 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface)] text-[var(--copper)] hover:-translate-y-0.5" aria-label="Toggle theme" data-testid="theme-toggle-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon size-4" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path></svg></button><button type="button" class="relative flex size-10 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface)] text-[var(--copper)] hover:-translate-y-0.5" aria-label="Open cart" data-testid="header-cart-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag size-4" aria-hidden="true"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg></button></div></header><main class="mx-auto max-w-7xl px-5 pb-40 lg:px-8"><section class="grid gap-8 pb-14 pt-10 lg:grid-cols-[1fr_0.88fr] lg:items-end lg:gap-16 lg:pt-16" data-testid="hero-section"><div class="relative z-10"><span data-variant="outline" class="group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-4xl border font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&amp;&gt;svg]:pointer-events-none [&amp;&gt;svg]:size-3! [a]:hover:bg-muted [a]:hover:text-muted-foreground mb-6 border-[var(--copper)]/30 bg-[var(--copper)]/5 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--copper)]" data-testid="hero-eyebrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles size-3" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle></svg> Table-side ordering</span><h1 class="max-w-3xl font-heading text-5xl font-semibold leading-[0.96] tracking-[-0.055em] text-[var(--text)] sm:text-6xl lg:text-8xl" data-testid="hero-heading">Good food.<br><em class="font-normal text-[var(--copper)]">Better company.</em></h1><p class="mt-7 max-w-lg text-base leading-7 text-[var(--text-dim)]" data-testid="hero-copy">Artisanal roasts, handcrafted pizzas &amp; gourmet comfort. Add to your table’s order, then sit back while we make it fresh.</p><div class="mt-8 flex flex-wrap items-center gap-4"><a href="#menu" class="group inline-flex items-center gap-2 rounded-full bg-[var(--copper)] px-5 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_-10px_rgba(180,80,20,.5)] hover:-translate-y-0.5" data-testid="hero-browse-menu-link">Browse the menu <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right size-4 transition-transform group-hover:translate-x-1" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a><span class="font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--muted)]" data-testid="hero-table-note">Ordering for table <span style="display: contents;">2</span></span></div></div><div class="relative min-h-[360px]" data-testid="hero-image-collage"><div class="absolute inset-x-6 top-0 h-[310px] overflow-hidden rounded-[2rem] border border-white/20 shadow-[0_25px_70px_-25px_rgba(90,40,15,.55)] lg:inset-x-0 abudi-special-carousel" data-testid="abudi-special-carousel">
+  <div class="abudi-special-track">
+    <div class="abudi-special-slide"><img alt="ABUDI Special photo 1" src="assets/images/image-01.jpg"></div>
+    <div class="abudi-special-slide"><img alt="ABUDI Special photo 2" src="assets/images/image-02.jpg"></div>
+    <div class="abudi-special-slide"><img alt="ABUDI Special photo 3" src="assets/images/image-03.jpg"></div>
+    <div class="abudi-special-slide"><img alt="ABUDI Special photo 4" src="assets/images/image-04.jpg"></div>
+    <div class="abudi-special-slide"><img alt="ABUDI Special photo 5" src="assets/images/image-05.jpg"></div>
+    <div class="abudi-special-slide"><img alt="ABUDI Special photo 6" src="assets/images/image-06.jpg"></div>
+  </div>
+  <div class="abudi-special-overlay"></div>
+  <div class="abudi-special-content">
+    <div class="font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--copper)]">Our signature</div>
+    <div class="mt-1 font-heading text-xl font-semibold text-white">ABUDI Special</div>
+    <div class="mt-1 text-xs text-white/80">Made for slow moments.</div>
+  </div>
+  <div class="abudi-special-dots" aria-label="ABUDI Special photos">
+    <button type="button" class="abudi-dot is-active" aria-label="Photo 1"></button>
+    <button type="button" class="abudi-dot" aria-label="Photo 2"></button>
+    <button type="button" class="abudi-dot" aria-label="Photo 3"></button>
+    <button type="button" class="abudi-dot" aria-label="Photo 4"></button>
+    <button type="button" class="abudi-dot" aria-label="Photo 5"></button>
+    <button type="button" class="abudi-dot" aria-label="Photo 6"></button>
+  </div>
+</div><div class="absolute -bottom-1 -left-1 w-44 overflow-hidden rounded-2xl border-8 border-[var(--background)] shadow-xl sm:left-2" data-testid="hero-secondary-image"><img alt="ABUDI cafe interior" class="h-40 w-full object-cover" src="assets/images/image-02.jpg"></div></div></section><section id="menu" class="scroll-mt-6" data-testid="menu-section"><div class="mb-7 flex flex-col justify-between gap-5 border-t border-[var(--line-soft)] pt-8 sm:flex-row sm:items-end"><div><div class="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--copper)]" data-testid="menu-eyebrow">The menu / 56 things to crave</div><h2 class="mt-2 font-heading text-4xl font-semibold tracking-[-0.04em]" data-testid="menu-heading">Take your pick.</h2></div><div class="relative w-full sm:max-w-xs"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-[var(--muted)]" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg><input id="base-ui-_r_0_" placeholder="Search the menu" data-testid="menu-search-input" class="w-full min-w-0 border px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 h-10 rounded-full border-[var(--line)] bg-[var(--surface)] pl-10" value=""></div></div><div class="no-scrollbar -mx-5 flex gap-2 overflow-x-auto px-5 pb-8 lg:-mx-8 lg:px-8" data-testid="category-filter-list"><button type="button" class="shrink-0 rounded-full border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.12em] border-[var(--copper)] bg-[var(--copper)] text-white" data-testid="category-filter-all">All categories</button><button type="button" class="shrink-0 rounded-full border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.12em] border-[var(--line)] bg-[var(--surface)] text-[var(--text-dim)] hover:border-[var(--copper)]" data-testid="category-filter-pizza">Pizza</button><button type="button" class="shrink-0 rounded-full border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.12em] border-[var(--line)] bg-[var(--surface)] text-[var(--text-dim)] hover:border-[var(--copper)]" data-testid="category-filter-pasta">Pasta</button><button type="button" class="shrink-0 rounded-full border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.12em] border-[var(--line)] bg-[var(--surface)] text-[var(--text-dim)] hover:border-[var(--copper)]" data-testid="category-filter-burgers">Burgers &amp; Wrap</button><button type="button" class="shrink-0 rounded-full border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.12em] border-[var(--line)] bg-[var(--surface)] text-[var(--text-dim)] hover:border-[var(--copper)]" data-testid="category-filter-sandwich">Sandwich</button><button type="button" class="shrink-0 rounded-full border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.12em] border-[var(--line)] bg-[var(--surface)] text-[var(--text-dim)] hover:border-[var(--copper)]" data-testid="category-filter-appetizers">Appetizers</button><button type="button" class="shrink-0 rounded-full border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.12em] border-[var(--line)] bg-[var(--surface)] text-[var(--text-dim)] hover:border-[var(--copper)]" data-testid="category-filter-special">ABUDI Special</button><button type="button" class="shrink-0 rounded-full border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.12em] border-[var(--line)] bg-[var(--surface)] text-[var(--text-dim)] hover:border-[var(--copper)]" data-testid="category-filter-shake">Milk Shake</button><button type="button" class="shrink-0 rounded-full border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.12em] border-[var(--line)] bg-[var(--surface)] text-[var(--text-dim)] hover:border-[var(--copper)]" data-testid="category-filter-mojito">Mojito&#x27;s</button><button type="button" class="shrink-0 rounded-full border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.12em] border-[var(--line)] bg-[var(--surface)] text-[var(--text-dim)] hover:border-[var(--copper)]" data-testid="category-filter-hot">Hot &amp; Beverages</button><button type="button" class="shrink-0 rounded-full border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.12em] border-[var(--line)] bg-[var(--surface)] text-[var(--text-dim)] hover:border-[var(--copper)]" data-testid="category-filter-cold">Cold Coffee &amp; Drinks</button><button type="button" class="shrink-0 rounded-full border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.12em] border-[var(--line)] bg-[var(--surface)] text-[var(--text-dim)] hover:border-[var(--copper)]" data-testid="category-filter-abudi">Abudi Specials</button><button type="button" class="shrink-0 rounded-full border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.12em] border-[var(--line)] bg-[var(--surface)] text-[var(--text-dim)] hover:border-[var(--copper)]" data-testid="category-filter-desserts">Desserts</button></div><div class="space-y-14">
+<section data-testid="menu-category-special" data-category="special">
+  <div class="mb-5 flex items-center gap-3">
+    <div class="h-px flex-1 bg-[var(--line-soft)]"></div>
+    <span class="font-mono text-[10px] uppercase tracking-[0.17em] text-[var(--muted)]" data-testid="menu-category-label-special">ABUDI Special</span>
+    <div class="h-px w-8 bg-[var(--line-soft)]"></div>
+  </div>
+  <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-special_0">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Paneer Cheeze Pocket at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-special_0" src="assets/images/PaneerCheezePocket.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-special_0">Paneer Cheeze Pocket</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-special_0">₹199</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Paneer Cheeze Pocket to order" data-testid="add-item-special_0">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-special_1">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Chicken Cheeze Pocket at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-special_1" src="assets/images/ChickenCheezePocket.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-special_1">Chicken Cheeze Pocket</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-special_1">₹219</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Chicken Cheeze Pocket to order" data-testid="add-item-special_1">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-special_2">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Loaded Chicken Fries at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-special_2" src="assets/images/LoadedChickenFries.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-special_2">Loaded Chicken Fries</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-special_2">₹169</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Loaded Chicken Fries to order" data-testid="add-item-special_2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-special_3">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Cheezy Fries at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-special_3" src="assets/images/CheezyFries.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-special_3">Cheezy Fries</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-special_3">₹149</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Cheezy Fries to order" data-testid="add-item-special_3">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article></div>
+</section>
+<section data-testid="menu-category-shake" data-category="shake">
+  <div class="mb-5 flex items-center gap-3">
+    <div class="h-px flex-1 bg-[var(--line-soft)]"></div>
+    <span class="font-mono text-[10px] uppercase tracking-[0.17em] text-[var(--muted)]" data-testid="menu-category-label-shake">Milk Shake</span>
+    <div class="h-px w-8 bg-[var(--line-soft)]"></div>
+  </div>
+  <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-shake_0">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Oreo Milk Shake at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-shake_0" src="assets/images/OreoMilkShake.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-shake_0">Oreo Milk Shake</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-shake_0">₹149</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Oreo Milk Shake to order" data-testid="add-item-shake_0">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-shake_1">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Kit Kat Milk Shake at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-shake_1" src="assets/images/KitKatMilkShake.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-shake_1">Kit Kat Milk Shake</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-shake_1">₹149</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Kit Kat Milk Shake to order" data-testid="add-item-shake_1">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-shake_2">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Biscoff Milk Shake at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-shake_2" src="assets/images/BiscoffMilkShake.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-shake_2">Biscoff Milk Shake</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-shake_2">₹200</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Biscoff Milk Shake to order" data-testid="add-item-shake_2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-shake_3">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Chocolate Milk Shake at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-shake_3" src="assets/images/ChocolateMilkShake.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-shake_3">Chocolate Milk Shake</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-shake_3">₹109</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Chocolate Milk Shake to order" data-testid="add-item-shake_3">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-shake_4">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Straw Berry Milk Shake at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-shake_4" src="assets/images/StrawBerryMilkShake.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-shake_4">Straw Berry Milk Shake</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-shake_4">₹99</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Straw Berry Milk Shake to order" data-testid="add-item-shake_4">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-shake_5">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Nutella Milk Shake at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-shake_5" src="assets/images/NutellaMilkShake.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-shake_5">Nutella Milk Shake</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-shake_5">₹200</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Nutella Milk Shake to order" data-testid="add-item-shake_5">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-shake_6">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Butter Scoth Milk Shake at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-shake_6" src="assets/images/ButterScotchMilkShake.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-shake_6">Butter Scoth Milk Shake</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-shake_6">₹120</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Butter Scoth Milk Shake to order" data-testid="add-item-shake_6">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-shake_7">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Dates &amp; Nuts Milk Shake at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-shake_7" src="assets/images/DatesAndNutsMilkShake.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-shake_7">Dates &amp; Nuts Milk Shake</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-shake_7">₹179</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Dates &amp; Nuts Milk Shake to order" data-testid="add-item-shake_7">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article></div>
+</section>
+<section data-testid="menu-category-mojito" data-category="mojito">
+  <div class="mb-5 flex items-center gap-3">
+    <div class="h-px flex-1 bg-[var(--line-soft)]"></div>
+    <span class="font-mono text-[10px] uppercase tracking-[0.17em] text-[var(--muted)]" data-testid="menu-category-label-mojito">Mojito&#x27;s</span>
+    <div class="h-px w-8 bg-[var(--line-soft)]"></div>
+  </div>
+  <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-mojito_0">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Green Apple at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-mojito_0" src="assets/images/GreenApple.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-mojito_0">Green Apple</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-mojito_0">₹109</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Green Apple to order" data-testid="add-item-mojito_0">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-mojito_1">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Blue Berry Mojito at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-mojito_1" src="assets/images/BlueBerryMojito.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-mojito_1">Blue Berry Mojito</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-mojito_1">₹109</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Blue Berry Mojito to order" data-testid="add-item-mojito_1">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-mojito_2">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Raspberry Mojito at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-mojito_2" src="assets/images/RaspberryMojito.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-mojito_2">Raspberry Mojito</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-mojito_2">₹109</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Raspberry Mojito to order" data-testid="add-item-mojito_2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-mojito_3">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Mint Mojito at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-mojito_3" src="assets/images/MintMojito.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-mojito_3">Mint Mojito</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-mojito_3">₹109</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Mint Mojito to order" data-testid="add-item-mojito_3">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-mojito_4">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Kiwi Mojito at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-mojito_4" src="assets/images/KiwiMojito.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-mojito_4">Kiwi Mojito</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-mojito_4">₹109</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Kiwi Mojito to order" data-testid="add-item-mojito_4">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-mojito_5">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Water Melon Mojito at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-mojito_5" src="assets/images/WaterMelonMojito.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-mojito_5">Water Melon Mojito</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-mojito_5">₹109</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Water Melon Mojito to order" data-testid="add-item-mojito_5">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-mojito_6">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Blue Curaco at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-mojito_6" src="assets/images/BlueCuraco.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-mojito_6">Blue Curaco</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-mojito_6">₹109</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Blue Curaco to order" data-testid="add-item-mojito_6">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article></div>
+</section>
+<section data-testid="menu-category-appetizers" data-category="appetizers">
+  <div class="mb-5 flex items-center gap-3">
+    <div class="h-px flex-1 bg-[var(--line-soft)]"></div>
+    <span class="font-mono text-[10px] uppercase tracking-[0.17em] text-[var(--muted)]" data-testid="menu-category-label-appetizers">Appetizers</span>
+    <div class="h-px w-8 bg-[var(--line-soft)]"></div>
+  </div>
+  <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-appetizers_0">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="French Fries (200gm) at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-appetizers_0" src="assets/images/FrenchFries.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-appetizers_0">French Fries (200gm)</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-appetizers_0">₹89</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add French Fries (200gm) to order" data-testid="add-item-appetizers_0">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-appetizers_1">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Peri Peri French Fries (200gm) at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-appetizers_1" src="assets/images/PeriPeriFrenchFries.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-appetizers_1">Peri Peri French Fries (200gm)</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-appetizers_1">₹109</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Peri Peri French Fries (200gm) to order" data-testid="add-item-appetizers_1">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-appetizers_2">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Chicken Loaded Fries at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-appetizers_2" src="assets/images/ChickenLoadedFries.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-appetizers_2">Chicken Loaded Fries</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-appetizers_2">₹169</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Chicken Loaded Fries to order" data-testid="add-item-appetizers_2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-appetizers_3">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Garlic Bread (4pc) at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-appetizers_3" src="assets/images/GarlicBread.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-appetizers_3">Garlic Bread (4pc)</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-appetizers_3">₹110</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Garlic Bread (4pc) to order" data-testid="add-item-appetizers_3">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-appetizers_4">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Garlic Cheeze Bread at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-appetizers_4" src="assets/images/GarlicCheezeBread.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-appetizers_4">Garlic Cheeze Bread</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-appetizers_4">₹150</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Garlic Cheeze Bread to order" data-testid="add-item-appetizers_4">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-appetizers_5">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Chicken Strips (6pc) at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-appetizers_5" src="assets/images/ChickenStrips.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-appetizers_5">Chicken Strips (6pc)</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-appetizers_5">₹200</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Chicken Strips (6pc) to order" data-testid="add-item-appetizers_5">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-appetizers_6">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Chicken Nuggets (6pc) at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-appetizers_6" src="assets/images/ChickenNuggets.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-appetizers_6">Chicken Nuggets (6pc)</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-appetizers_6">₹120</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Chicken Nuggets (6pc) to order" data-testid="add-item-appetizers_6">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-appetizers_7">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Chicken Popcorn (10pc) at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-appetizers_7" src="assets/images/ChickenPopcorn.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-appetizers_7">Chicken Popcorn (10pc)</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-appetizers_7">₹149</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Chicken Popcorn (10pc) to order" data-testid="add-item-appetizers_7">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-appetizers_8">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Potato Wedges (8pc) at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-appetizers_8" src="assets/images/PotatoWedges.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-appetizers_8">Potato Wedges (8pc)</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-appetizers_8">₹109</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Potato Wedges (8pc) to order" data-testid="add-item-appetizers_8">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-appetizers_9">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Veg Nuggets (6pc) at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-appetizers_9" src="assets/images/VegNuggets.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-appetizers_9">Veg Nuggets (6pc)</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-appetizers_9">₹89</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Veg Nuggets (6pc) to order" data-testid="add-item-appetizers_9">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article></div>
+</section>
+<section data-testid="menu-category-burgers" data-category="burgers">
+  <div class="mb-5 flex items-center gap-3">
+    <div class="h-px flex-1 bg-[var(--line-soft)]"></div>
+    <span class="font-mono text-[10px] uppercase tracking-[0.17em] text-[var(--muted)]" data-testid="menu-category-label-burgers">Burgers &amp; Wrap</span>
+    <div class="h-px w-8 bg-[var(--line-soft)]"></div>
+  </div>
+  <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-burgers_0">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Veg Burger at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-burgers_0" src="assets/images/VegBurger.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-burgers_0">Veg Burger</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-burgers_0">₹109</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Veg Burger to order" data-testid="add-item-burgers_0">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-burgers_1">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Paneer Burger at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-burgers_1" src="assets/images/PaneerBurger.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-burgers_1">Paneer Burger</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-burgers_1">₹129</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Paneer Burger to order" data-testid="add-item-burgers_1">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-burgers_2">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Chicken Burger at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-burgers_2" src="assets/images/ChickenBurger.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-burgers_2">Chicken Burger</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-burgers_2">₹149</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Chicken Burger to order" data-testid="add-item-burgers_2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-burgers_3">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Chicken Zinger Burger at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-burgers_3" src="assets/images/ChickenZingerBurger.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-burgers_3">Chicken Zinger Burger</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-burgers_3">₹179</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Chicken Zinger Burger to order" data-testid="add-item-burgers_3">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-burgers_4">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="ABUDI Special Chicken Cheeze Burger at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-burgers_4" src="assets/images/ABUDISpecialChickenCheezeBurger.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-burgers_4">ABUDI Special Chicken Cheeze Burger</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-burgers_4">₹199</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add ABUDI Special Chicken Cheeze Burger to order" data-testid="add-item-burgers_4">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-burgers_5">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Veg Wrap at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-burgers_5" src="assets/images/VegWrap.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-burgers_5">Veg Wrap</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-burgers_5">₹119</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Veg Wrap to order" data-testid="add-item-burgers_5">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-burgers_6">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Paneer Wrap at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-burgers_6" src="assets/images/PaneerWrap.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-burgers_6">Paneer Wrap</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-burgers_6">₹139</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Paneer Wrap to order" data-testid="add-item-burgers_6">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-burgers_7">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Crispy Chicken Wrap at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-burgers_7" src="assets/images/CrispyChickenWrap.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-burgers_7">Crispy Chicken Wrap</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-burgers_7">₹149</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Crispy Chicken Wrap to order" data-testid="add-item-burgers_7">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-burgers_8">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Chicken Zinger Wrap at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-burgers_8" src="assets/images/ChickenZingerWrap.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-burgers_8">Chicken Zinger Wrap</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-burgers_8">₹179</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Chicken Zinger Wrap to order" data-testid="add-item-burgers_8">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-burgers_9">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="ABUDI Special Chicken Wrap at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-burgers_9" src="assets/images/ABUDISpecialChickenWrap.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-burgers_9">ABUDI Special Chicken Wrap</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-burgers_9">₹199</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add ABUDI Special Chicken Wrap to order" data-testid="add-item-burgers_9">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article></div>
+</section>
+<section data-testid="menu-category-hot" data-category="hot">
+  <div class="mb-5 flex items-center gap-3">
+    <div class="h-px flex-1 bg-[var(--line-soft)]"></div>
+    <span class="font-mono text-[10px] uppercase tracking-[0.17em] text-[var(--muted)]" data-testid="menu-category-label-hot">Hot &amp; Beverages</span>
+    <div class="h-px w-8 bg-[var(--line-soft)]"></div>
+  </div>
+  <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-hot_0">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Espresso at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-hot_0" src="assets/images/Espresso.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-hot_0">Espresso</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-hot_0">₹80</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Espresso to order" data-testid="add-item-hot_0">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-hot_1">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Americano at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-hot_1" src="assets/images/Americano.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-hot_1">Americano</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-hot_1">₹90</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Americano to order" data-testid="add-item-hot_1">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-hot_2">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Cafe Latte at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-hot_2" src="assets/images/CafeLatte.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-hot_2">Cafe Latte</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-hot_2">₹100</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Cafe Latte to order" data-testid="add-item-hot_2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-hot_3">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Cappuccino at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-hot_3" src="assets/images/Cappuccino.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-hot_3">Cappuccino</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-hot_3">₹100</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Cappuccino to order" data-testid="add-item-hot_3">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-hot_4">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Caramel at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-hot_4" src="assets/images/Caramel.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-hot_4">Caramel</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-hot_4">₹120</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Caramel to order" data-testid="add-item-hot_4">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-hot_5">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Cafe Mocha at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-hot_5" src="assets/images/CafeMocha.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-hot_5">Cafe Mocha</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-hot_5">₹120</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Cafe Mocha to order" data-testid="add-item-hot_5">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-hot_6">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Hazel Nut Cappuccino at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-hot_6" src="assets/images/HazelNutCappuccino.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-hot_6">Hazel Nut Cappuccino</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-hot_6">₹129</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Hazel Nut Cappuccino to order" data-testid="add-item-hot_6">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-hot_7">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Irish Cappuccino at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-hot_7" src="assets/images/IrishCappuccino.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-hot_7">Irish Cappuccino</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-hot_7">₹129</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Irish Cappuccino to order" data-testid="add-item-hot_7">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-hot_8">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Hot Chocolate at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-hot_8" src="assets/images/HotChocolate.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-hot_8">Hot Chocolate</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-hot_8">₹100</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Hot Chocolate to order" data-testid="add-item-hot_8">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article></div>
+</section>
+<section data-testid="menu-category-cold" data-category="cold">
+  <div class="mb-5 flex items-center gap-3">
+    <div class="h-px flex-1 bg-[var(--line-soft)]"></div>
+    <span class="font-mono text-[10px] uppercase tracking-[0.17em] text-[var(--muted)]" data-testid="menu-category-label-cold">Cold Coffee &amp; Drinks</span>
+    <div class="h-px w-8 bg-[var(--line-soft)]"></div>
+  </div>
+  <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-cold_0">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Cold Coffee (300ml) at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-cold_0" src="assets/images/ColdCoffee.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-cold_0">Cold Coffee (300ml)</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-cold_0">₹180</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Cold Coffee (300ml) to order" data-testid="add-item-cold_0">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-cold_1">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Chocolate Cold Coffee with Ice Cream at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-cold_1" src="assets/images/ChocolateColdCoffeewithIceCream.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-cold_1">Chocolate Cold Coffee with Ice Cream</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-cold_1">₹200</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Chocolate Cold Coffee with Ice Cream to order" data-testid="add-item-cold_1">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-cold_2">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Cold Coffee with Chocolate Ice Cream at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-cold_2" src="assets/images/ColdCoffeewithChocolateIceCream.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-cold_2">Cold Coffee with Chocolate Ice Cream</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-cold_2">₹230</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Cold Coffee with Chocolate Ice Cream to order" data-testid="add-item-cold_2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-cold_3">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Nutella Frappe at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-cold_3" src="assets/images/NutellaFrappe.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-cold_3">Nutella Frappe</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-cold_3">₹170</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Nutella Frappe to order" data-testid="add-item-cold_3">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-cold_4">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Iced Americano at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-cold_4" src="assets/images/IcedAmericano.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-cold_4">Iced Americano</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-cold_4">₹130</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Iced Americano to order" data-testid="add-item-cold_4">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-cold_5">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Ice Latte at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-cold_5" src="assets/images/IceLatte.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-cold_5">Ice Latte</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-cold_5">₹150</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Ice Latte to order" data-testid="add-item-cold_5">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-cold_6">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Caramel Iced Latte at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-cold_6" src="assets/images/CaramelIcedLatte.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-cold_6">Caramel Iced Latte</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-cold_6">₹159</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Caramel Iced Latte to order" data-testid="add-item-cold_6">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-cold_7">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Ice Mocha at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-cold_7" src="assets/images/IceMocha.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-cold_7">Ice Mocha</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-cold_7">₹159</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Ice Mocha to order" data-testid="add-item-cold_7">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-cold_8">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Hazel Nut Iced Latte at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-cold_8" src="assets/images/HazelNutIcedLatte.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-cold_8">Hazel Nut Iced Latte</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-cold_8">₹189</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Hazel Nut Iced Latte to order" data-testid="add-item-cold_8">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-cold_9">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Spanish Latte at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-cold_9" src="assets/images/SpanishLatte.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-cold_9">Spanish Latte</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-cold_9">₹150</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Spanish Latte to order" data-testid="add-item-cold_9">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article></div>
+</section>
+<section data-testid="menu-category-abudi" data-category="abudi">
+  <div class="mb-5 flex items-center gap-3">
+    <div class="h-px flex-1 bg-[var(--line-soft)]"></div>
+    <span class="font-mono text-[10px] uppercase tracking-[0.17em] text-[var(--muted)]" data-testid="menu-category-label-abudi">Abudi Specials</span>
+    <div class="h-px w-8 bg-[var(--line-soft)]"></div>
+  </div>
+  <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-abudi_0">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Cranberry Special at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-abudi_0" src="assets/images/CranberrySpecial.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-abudi_0">Cranberry Special</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-abudi_0">₹280</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Cranberry Special to order" data-testid="add-item-abudi_0">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-abudi_1">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Cranberry Single at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-abudi_1" src="assets/images/CranberrySingle.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-abudi_1">Cranberry Single </h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-abudi_1">₹120</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Cranberry Single to order" data-testid="add-item-abudi_1">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-abudi_2">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Cranberry Double at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-abudi_2" src="assets/images/CranberryDouble.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-abudi_2">Cranberry Double</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-abudi_2">₹150</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Cranberry Double  to order" data-testid="add-item-abudi_2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-abudi_3">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Classic Cold Brew (Honey with cinnamon) at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-abudi_3" src="assets/images/ClassicColdBrew.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-abudi_3">Classic Cold Brew (Honey with cinnamon)</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-abudi_3">₹180</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Classic Cold Brew (Honey with cinnamon) to order" data-testid="add-item-abudi_3">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-abudi_4">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Bour Bourn  at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-abudi_4" src="assets/images/BourBourn.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-abudi_4">Bour Bourn </h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-abudi_4">₹220</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Bour Bourn  to order" data-testid="add-item-abudi_4">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article></div>
+</section>
+<section data-testid="menu-category-desserts" data-category="desserts">
+  <div class="mb-5 flex items-center gap-3">
+    <div class="h-px flex-1 bg-[var(--line-soft)]"></div>
+    <span class="font-mono text-[10px] uppercase tracking-[0.17em] text-[var(--muted)]" data-testid="menu-category-label-desserts">Desserts</span>
+    <div class="h-px w-8 bg-[var(--line-soft)]"></div>
+  </div>
+  <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-desserts_0">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Choco Lava at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-desserts_0" src="assets/images/ChocoLava.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-desserts_0">Choco Lava</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-desserts_0">₹119</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Choco Lava to order" data-testid="add-item-desserts_0">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-desserts_1">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Choco Lava (with ice cream) at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-desserts_1" src="assets/images/ChocoLava.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-desserts_1">Choco Lava (with ice cream)</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-desserts_1">₹159</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Choco Lava (with ice cream) to order" data-testid="add-item-desserts_1">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-desserts_2">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Sizzling Brownie at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-desserts_2" src="assets/images/SizzlingBrownie.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-desserts_2">Sizzling Brownie</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-desserts_2">₹139</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Sizzling Brownie to order" data-testid="add-item-desserts_2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-desserts_3">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Brownie with ice cream at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-desserts_3" src="assets/images/Browniewithicecream.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-desserts_3">Brownie with ice cream</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-desserts_3">₹169</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Brownie with ice cream to order" data-testid="add-item-desserts_3">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-desserts_4">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Pan Cake (Blue Berry / Strawberry / Banana) at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-desserts_4" src="assets/images/PanCake.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-desserts_4">Pan Cake (Blue Berry / Strawberry / Banana)</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]">Price on request</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Pan Cake (Blue Berry / Strawberry / Banana) to order" data-testid="add-item-desserts_4">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article></div>
+</section>
+<section data-testid="menu-category-pasta" data-category="pasta">
+  <div class="mb-5 flex items-center gap-3">
+    <div class="h-px flex-1 bg-[var(--line-soft)]"></div>
+    <span class="font-mono text-[10px] uppercase tracking-[0.17em] text-[var(--muted)]" data-testid="menu-category-label-pasta">Pasta</span>
+    <div class="h-px w-8 bg-[var(--line-soft)]"></div>
+  </div>
+  <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-pasta_0">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Veg Classic Alfredo at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-pasta_0" src="assets/images/VegClassicAlfredo.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-pasta_0">Veg Classic Alfredo</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-pasta_0">₹189</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Veg Classic Alfredo to order" data-testid="add-item-pasta_0">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-pasta_1">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Spaghetti (Italian Pasta) at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-pasta_1" src="assets/images/Spaghetti.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-pasta_1">Spaghetti (Italian Pasta)</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-pasta_1">₹199</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Spaghetti (Italian Pasta) to order" data-testid="add-item-pasta_1">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-pasta_2">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Chicken Alfredo at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-pasta_2" src="assets/images/ChickenAlfredo.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-pasta_2">Chicken Alfredo</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-pasta_2">₹249</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Chicken Alfredo to order" data-testid="add-item-pasta_2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-pasta_3">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Spaghetti Chicken (Italian Pasta) at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-pasta_3" src="assets/images/SpaghettiChicken.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-pasta_3">Spaghetti Chicken (Italian Pasta)</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-pasta_3">₹260</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Spaghetti Chicken (Italian Pasta) to order" data-testid="add-item-pasta_3">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-pasta_4">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Basil Chicken Pasta at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-pasta_4" src="assets/images/BasilChickenPasta.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-pasta_4">Basil Chicken Pasta</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-pasta_4">₹299</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Basil Chicken Pasta to order" data-testid="add-item-pasta_4">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-pasta_5">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Veg Basil Pasta at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-pasta_5" src="assets/images/VegBasilPasta.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-pasta_5">Veg Basil Pasta</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-pasta_5">₹249</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Veg Basil Pasta to order" data-testid="add-item-pasta_5">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article></div>
+</section>
+<section data-testid="menu-category-sandwich" data-category="sandwich">
+  <div class="mb-5 flex items-center gap-3">
+    <div class="h-px flex-1 bg-[var(--line-soft)]"></div>
+    <span class="font-mono text-[10px] uppercase tracking-[0.17em] text-[var(--muted)]" data-testid="menu-category-label-sandwich">Sandwich</span>
+    <div class="h-px w-8 bg-[var(--line-soft)]"></div>
+  </div>
+  <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-sandwich_0">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Veg Sandwich at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-sandwich_0" src="assets/images/VegSandwich.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-sandwich_0">Veg Sandwich</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-sandwich_0">₹110</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Veg Sandwich to order" data-testid="add-item-sandwich_0">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-sandwich_1">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Spiced Paneer Sandwich at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-sandwich_1" src="assets/images/SpicedPaneerSandwich.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-sandwich_1">Spiced Paneer Sandwich</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-sandwich_1">₹120</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Spiced Paneer Sandwich to order" data-testid="add-item-sandwich_1">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-sandwich_2">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Chicken Cheeze Sandwich at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-sandwich_2" src="assets/images/ChickenCheezeSandwich.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-sandwich_2">Chicken Cheeze Sandwich</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-sandwich_2">₹139</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Chicken Cheeze Sandwich to order" data-testid="add-item-sandwich_2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-sandwich_3">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="ABUDI Special Chicken Sandwich at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-sandwich_3" src="assets/images/ABUDISpecialChickenSandwich.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-sandwich_3">ABUDI Special Chicken Sandwich</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-sandwich_3">₹149</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add ABUDI Special Chicken Sandwich to order" data-testid="add-item-sandwich_3">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article></div>
+</section>
+<section data-testid="menu-category-pizza" data-category="pizza">
+  <div class="mb-5 flex items-center gap-3">
+    <div class="h-px flex-1 bg-[var(--line-soft)]"></div>
+    <span class="font-mono text-[10px] uppercase tracking-[0.17em] text-[var(--muted)]" data-testid="menu-category-label-pizza">Pizza</span>
+    <div class="h-px w-8 bg-[var(--line-soft)]"></div>
+  </div>
+  <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-pizza_0">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Margherita at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-pizza_0" src="assets/images/Margherita.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-pizza_0">Margherita</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-pizza_0">₹169</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Margherita to order" data-testid="add-item-pizza_0">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-pizza_1">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Veg Loaded Pizza at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-pizza_1" src="assets/images/VegLoadedPizza.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-pizza_1">Veg Loaded Pizza</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-pizza_1">₹189</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Veg Loaded Pizza to order" data-testid="add-item-pizza_1">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-pizza_2">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Spicy Paneer Pizza at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-pizza_2" src="assets/images/SpicyPaneerPizza.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-pizza_2">Spicy Paneer Pizza</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-pizza_2">₹199</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Spicy Paneer Pizza to order" data-testid="add-item-pizza_2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-pizza_3">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Corn Cheeze Corn Pizza at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-pizza_3" src="assets/images/CornCheezeCornPizza.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-pizza_3">Corn Cheeze Corn Pizza</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-pizza_3">₹179</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Corn Cheeze Corn Pizza to order" data-testid="add-item-pizza_3">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-pizza_4">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Chicken Tikka Pizza at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-pizza_4" src="assets/images/ChickenTikkaPizza.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-pizza_4">Chicken Tikka Pizza</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-pizza_4">₹229</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Chicken Tikka Pizza to order" data-testid="add-item-pizza_4">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-pizza_5">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Peri Peri Chicken Pizza at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-pizza_5" src="assets/images/PeriPeriChickenPizza.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-pizza_5">Peri Peri Chicken Pizza</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-pizza_5">₹249</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Peri Peri Chicken Pizza to order" data-testid="add-item-pizza_5">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-pizza_6">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="ABUDI Special Pizza at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-pizza_6" src="assets/images/ABUDISpecialPizza.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-pizza_6">ABUDI Special Pizza</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-pizza_6">₹349</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add ABUDI Special Pizza to order" data-testid="add-item-pizza_6">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article>
+<article class="group flex min-h-[108px] items-center justify-between gap-3 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface)] p-3 shadow-[0_10px_30px_-10px_rgba(180,80,20,.06)] hover:-translate-y-0.5 hover:border-[var(--copper)]/40 hover:shadow-[0_16px_35px_-15px_rgba(180,80,20,.22)]" data-testid="menu-item-pizza_7">
+  <div class="flex min-w-0 items-center gap-3">
+    <div class="size-[74px] shrink-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-strong)]">
+      <img alt="Chicken Loaded Pizza at ABUDI Coffee Roasters" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-testid="menu-item-image-pizza_7" src="assets/images/ChickenLoadedPizza.jpg">
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-semibold leading-tight text-[var(--text)]" data-testid="menu-item-name-pizza_7">Chicken Loaded Pizza</h3>
+      <div class="mt-2 flex items-center gap-2"><span class="font-mono text-sm font-bold text-[var(--copper)]" data-testid="menu-item-price-pizza_7">₹299</span></div>
+    </div>
+  </div>
+  <button type="button" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white" aria-label="Add Chicken Loaded Pizza to order" data-testid="add-item-pizza_7">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+  </button>
+</article></div>
+</section>
+</div></section></main><footer class="border-t border-[var(--line-soft)] px-5 py-10 text-center lg:px-8" data-testid="site-footer"><div class="flex items-center gap-3" data-testid="brand-logo"><div class="flex size-10 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--gold)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coffee size-5" aria-hidden="true"><path d="M10 2v2"></path><path d="M14 2v2"></path><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"></path><path d="M6 2v2"></path></svg></div><div><div class="font-heading text-lg font-semibold tracking-tight">ABUDI</div><div class="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--copper)]">Coffee Roasters</div></div></div><p class="mx-auto mt-4 max-w-sm text-sm leading-6 text-[var(--text-dim)]" data-testid="footer-copy">Artisanal roasts, handcrafted pizzas &amp; gourmet comfort — made for slow moments and good company.</p><a href="https://www.instagram.com/abudicoffee?igsh=MXdxejZzenN2a2V1Nw==" target="_blank" rel="noreferrer" class="mt-4 inline-block font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--copper)] hover:underline" data-testid="instagram-link">Follow us on Instagram</a></footer></div></div></div></div>
+  <script type="module" src="./app.js"></script>
+
+<style id="abudi-special-carousel-style">
+  .abudi-special-carousel {
+    position: absolute;
+    isolation: isolate;
+  }
+
+  .abudi-special-track {
+    display: flex;
+    width: 600%;
+    height: 100%;
+    transform: translateX(0);
+    transition: transform .7s cubic-bezier(.22,1,.36,1);
+    touch-action: pan-y;
+  }
+
+  .abudi-special-slide {
+    flex: 0 0 16.6666667%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .abudi-special-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.01);
+  }
+
+  .abudi-special-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      rgba(0,0,0,.45) 0%,
+      rgba(0,0,0,.10) 55%,
+      rgba(0,0,0,.35) 100%
+    );
+  }
+
+  .abudi-special-content {
+    position: absolute;
+    z-index: 3;
+    left: 28px;
+    bottom: 26px;
+    pointer-events: none;
+    text-shadow: 0 2px 14px rgba(0,0,0,.45);
+  }
+
+  .abudi-special-dots {
+    position: absolute;
+    z-index: 4;
+    right: 24px;
+    bottom: 22px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .abudi-dot {
+    width: 7px;
+    height: 7px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255,255,255,.55);
+    cursor: pointer;
+    transition: width .25s ease, background .25s ease, transform .25s ease;
+  }
+
+  .abudi-dot.is-active {
+    width: 22px;
+    background: #fff;
+  }
+
+  @media (max-width: 520px) {
+    .abudi-special-content {
+      left: 20px;
+      bottom: 20px;
+    }
+
+    .abudi-special-dots {
+      right: 18px;
+      bottom: 18px;
+    }
+  }
+</style>
+<script>
+(() => {
+  const carousel = document.querySelector('[data-testid="abudi-special-carousel"]');
+  if (!carousel) return;
+
+  const track = carousel.querySelector('.abudi-special-track');
+  const dots = [...carousel.querySelectorAll('.abudi-dot')];
+  const total = 6;
+  let current = 0;
+  let timer;
+
+  function showSlide(index) {
+    current = (index + total) % total;
+    track.style.transform = `translateX(-${current * 16.6666667}%)`;
+    dots.forEach((dot, i) => dot.classList.toggle('is-active', i === current));
+  }
+
+  function startAutoScroll() {
+    clearInterval(timer);
+    timer = setInterval(() => showSlide(current + 1), 3000);
+  }
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      showSlide(i);
+      startAutoScroll();
+    });
+  });
+
+  let startX = 0;
+  let dragging = false;
+
+  carousel.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+    dragging = true;
+  }, { passive: true });
+
+  carousel.addEventListener('touchend', e => {
+    if (!dragging) return;
+    const endX = e.changedTouches[0].clientX;
+    const distance = endX - startX;
+
+    if (Math.abs(distance) > 45) {
+      showSlide(current + (distance < 0 ? 1 : -1));
+    }
+
+    dragging = false;
+    startAutoScroll();
+  }, { passive: true });
+
+  showSlide(0);
+  startAutoScroll();
+})();
+</script>
+
+
+
+
+</body>
+</html>
