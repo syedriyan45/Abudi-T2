@@ -7,6 +7,149 @@
   <title>ABUDI Coffee Roasters — Order</title>
   <link rel="icon" type="image/png" href="assets/images/abudi-logo.png" />
   <link rel="stylesheet" href="./styles.css" />
+
+<style id="abudi-quantity-modal-style">
+/* ABUDI circular quantity selector — compact enough to stay inside menu cards */
+.menu-quantity-control {
+  flex: 0 0 184px !important;
+  width: 184px !important;
+  min-width: 184px !important;
+  max-width: 184px !important;
+  height: 76px !important;
+  min-height: 76px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 18px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: var(--copper);
+  overflow: visible !important;
+}
+
+.menu-qty-btn {
+  flex: 0 0 68px !important;
+  width: 68px !important;
+  height: 68px !important;
+  min-width: 68px !important;
+  min-height: 68px !important;
+  max-width: 68px !important;
+  max-height: 68px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  border: 2px solid var(--copper) !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  color: var(--copper) !important;
+  font-family: inherit !important;
+  font-size: 32px !important;
+  font-weight: 400 !important;
+  line-height: 1 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+.menu-qty-btn:hover {
+  background: var(--copper) !important;
+  color: var(--bg) !important;
+}
+
+.menu-qty-btn:active {
+  transform: scale(.95);
+}
+
+.menu-qty-count {
+  flex: 0 0 30px !important;
+  width: 30px !important;
+  min-width: 30px !important;
+  max-width: 30px !important;
+  display: block !important;
+  text-align: center !important;
+  color: var(--text) !important;
+  font-family: inherit !important;
+  font-size: 42px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+/* Never allow the quantity control to squeeze menu text into vertical letters. */
+article[data-testid^="menu-item-"] {
+  min-width: 0 !important;
+}
+article[data-testid^="menu-item-"] > .menu-quantity-control {
+  flex-shrink: 0 !important;
+}
+
+@media (max-width: 640px) {
+  .menu-quantity-control {
+    flex-basis: 160px !important;
+    width: 160px !important;
+    min-width: 160px !important;
+    max-width: 160px !important;
+    gap: 14px !important;
+  }
+
+  .menu-qty-btn {
+    flex-basis: 60px !important;
+    width: 60px !important;
+    height: 60px !important;
+    min-width: 60px !important;
+    min-height: 60px !important;
+    max-width: 60px !important;
+    max-height: 60px !important;
+    font-size: 28px !important;
+  }
+
+  .menu-qty-count {
+    flex-basis: 26px !important;
+    width: 26px !important;
+    min-width: 26px !important;
+    max-width: 26px !important;
+    font-size: 36px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .menu-quantity-control {
+    flex-basis: 146px !important;
+    width: 146px !important;
+    min-width: 146px !important;
+    max-width: 146px !important;
+    gap: 10px !important;
+  }
+
+  .menu-qty-btn {
+    flex-basis: 54px !important;
+    width: 54px !important;
+    height: 54px !important;
+    min-width: 54px !important;
+    min-height: 54px !important;
+    max-width: 54px !important;
+    max-height: 54px !important;
+    font-size: 26px !important;
+  }
+
+  .menu-qty-count {
+    flex-basis: 24px !important;
+    width: 24px !important;
+    min-width: 24px !important;
+    max-width: 24px !important;
+    font-size: 34px !important;
+  }
+}
+</style>
+
 </head>
 <body>
   <div id="root"><div class="min-h-svh" data-testid="cafe-order-app"><div class="site-shell min-h-svh"><header class="mx-auto flex max-w-7xl items-center justify-between border-b border-[var(--line-soft)] px-5 py-5 lg:px-8" data-testid="site-header"><div class="flex items-center gap-3" data-testid="brand-logo"><div class="flex size-10 items-center justify-center overflow-hidden rounded-full border border-[var(--line)] bg-[var(--surface-strong)]" data-testid="brand-logo-image"><img src="assets/images/abudi-logo.png" alt="ABUDI Coffee Roasters logo" class="h-full w-full object-cover"></div><div><div class="font-heading text-lg font-semibold tracking-tight">ABUDI</div><div class="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--copper)]">Coffee Roasters</div></div></div><div class="flex items-center gap-2"><div class="hidden items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--surface)] px-3 py-2 font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--copper)] sm:flex" data-testid="table-number-display"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-utensils size-3.5" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg> Table <span style="display: contents;">2</span></div><button type="button" class="flex size-10 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface)] text-[var(--copper)] hover:-translate-y-0.5" aria-label="Toggle theme" data-testid="theme-toggle-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon size-4" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path></svg></button><button type="button" class="relative flex size-10 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface)] text-[var(--copper)] hover:-translate-y-0.5" aria-label="Open cart" data-testid="header-cart-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag size-4" aria-hidden="true"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg></button></div></header><main class="mx-auto max-w-7xl px-5 pb-40 lg:px-8"><section class="grid gap-8 pb-14 pt-10 lg:grid-cols-[1fr_0.88fr] lg:items-end lg:gap-16 lg:pt-16" data-testid="hero-section"><div class="relative z-10"><span data-variant="outline" class="group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-4xl border font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&amp;&gt;svg]:pointer-events-none [&amp;&gt;svg]:size-3! [a]:hover:bg-muted [a]:hover:text-muted-foreground mb-6 border-[var(--copper)]/30 bg-[var(--copper)]/5 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--copper)]" data-testid="hero-eyebrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles size-3" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle></svg> Table-side ordering</span><h1 class="max-w-3xl font-heading text-5xl font-semibold leading-[0.96] tracking-[-0.055em] text-[var(--text)] sm:text-6xl lg:text-8xl" data-testid="hero-heading">Good food.<br><em class="font-normal text-[var(--copper)]">Better company.</em></h1><p class="mt-7 max-w-lg text-base leading-7 text-[var(--text-dim)]" data-testid="hero-copy">Artisanal roasts, handcrafted pizzas &amp; gourmet comfort. Add to your table’s order, then sit back while we make it fresh.</p><div class="mt-8 flex flex-wrap items-center gap-4"><a href="#menu" class="group inline-flex items-center gap-2 rounded-full bg-[var(--copper)] px-5 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_-10px_rgba(180,80,20,.5)] hover:-translate-y-0.5" data-testid="hero-browse-menu-link">Browse the menu <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right size-4 transition-transform group-hover:translate-x-1" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a><span class="font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--muted)]" data-testid="hero-table-note">Ordering for table <span style="display: contents;">2</span></span></div></div><div class="relative min-h-[360px]" data-testid="hero-image-collage"><div class="absolute inset-x-6 top-0 h-[310px] overflow-hidden rounded-[2rem] border border-white/20 shadow-[0_25px_70px_-25px_rgba(90,40,15,.55)] lg:inset-x-0 abudi-special-carousel" data-testid="abudi-special-carousel">
