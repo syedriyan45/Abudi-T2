@@ -3120,235 +3120,128 @@
 
 
   /* =========================================================
-     ADD TO CART
+     ADD TO CART + RELIABLE MENU QUANTITY CONTROL
   ========================================================= */
 
-  document
-    .querySelectorAll(
-      '[data-testid^="add-item-"]'
-    )
-    .forEach(
-      button => {
+  function addMenuItemFromButton(button) {
+    if (!button || button.disabled) return;
 
-        button.addEventListener(
-          "click",
-          event => {
-
-            /* Once quantity controls are active, this outer button must not
-               run the normal "add one" action. The delegated quantity handler
-               below owns + and − clicks. This prevents double increments and
-               makes the controls reliable. */
-            if (button.dataset.menuQuantity === "true") {
-              return;
-            }
-
-            if (event.target.closest("[data-menu-action]")) {
-              return;
-            }
-
-            /*
-              Stop unavailable item.
-            */
-
-            if (
-              button.disabled
-            ) {
-
-              return;
-
-            }
-
-
-            const article =
-              button.closest(
-                "article"
-              );
-
-
-            const name =
-              article
-                ?.querySelector(
-                  '[data-testid^="menu-item-name-"]'
-                )
-                ?.textContent
-                .trim() ||
-              "Menu item";
-
-
-            /*
-              Double-check availability.
-            */
-
-            if (
-              !isMenuItemAvailable(
-                name
-              )
-            ) {
-
-              window.alert(
-                `${name} is currently unavailable.`
-              );
-
-              updateMenuAvailabilityUI();
-
-              return;
-
-            }
-
-
-            const price =
-              parsePrice(
-                article
-                  ?.querySelector(
-                    '[data-testid^="menu-item-price-"]'
-                  )
-                  ?.textContent ||
-                  "0"
-              );
-
-
-            const existing =
-              cart.get(
-                name
-              );
-
-
-            cart.set(
-              name,
-              {
-
-                name,
-
-                price,
-
-                quantity:
-                  (
-                    existing?.quantity ||
-                    0
-                  ) + 1
-
-              }
-            );
-
-            refreshMenuQuantityControl(article);
-
-
-            /*
-              Button animation.
-            */
-
-            button.animate(
-              [
-                {
-                  transform:
-                    "scale(1)"
-                },
-
-                {
-                  transform:
-                    "scale(.88)"
-                },
-
-                {
-                  transform:
-                    "scale(1)"
-                }
-              ],
-
-              {
-                duration: 220,
-
-                easing:
-                  "ease-out"
-              }
-            );
-
-
-            renderCart();
-
-
-            /*
-              Sticky cart animation.
-            */
-
-            stickyCart.animate(
-              [
-                {
-                  transform:
-                    "translate(-50%, 8px)"
-                },
-
-                {
-                  transform:
-                    "translate(-50%, -3px)"
-                },
-
-                {
-                  transform:
-                    "translate(-50%, 0)"
-                }
-              ],
-
-              {
-                duration: 350,
-
-                easing:
-                  "cubic-bezier(.22,1,.36,1)"
-              }
-            );
-
-          }
-        );
-
-      }
-    );
-
-
-
-  /* =========================================================
-     MENU ITEM QUANTITY CONTROLS
-     First tap: + becomes  − 1 +
-  ========================================================= */
-
-  const refreshMenuQuantityControl = (article) => {
-
+    const article = button.closest("article");
     if (!article) return;
 
-    const button = article.querySelector('[data-testid^="add-item-"]');
-    if (!button) return;
+    const name = article.querySelector('[data-testid^="menu-item-name-"]')?.textContent?.trim() || "Menu item";
+
+    if (!isMenuItemAvailable(name)) {
+      window.alert(`${name} is currently unavailable.`);
+      updateMenuAvailabilityUI();
+      return;
+    }
+
+    const price = parsePrice(
+      article.querySelector('[data-testid^="menu-item-price-"]')?.textContent || "0"
+    );
+
+    const existing = cart.get(name);
+    cart.set(name, {
+      name,
+      price,
+      quantity: (existing?.quantity || 0) + 1
+    });
+
+    refreshMenuQuantityControl(article);
+    renderCart();
+  }
+
+  function bindAddButton(button) {
+    if (!button || button.dataset.abudiBound === "true") return;
+
+    button.dataset.abudiBound = "true";
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      /* A quantity control has its own real buttons. */
+      if (button.dataset.menuQuantity === "true") return;
+
+      addMenuItemFromButton(button);
+    });
+  }
+
+  /*
+    IMPORTANT:
+    The old version used <span role="button"> elements INSIDE the Add button.
+    That is invalid nested interactive markup and can cause clicks to fire
+    inconsistently on mobile browsers.
+
+    This version uses three real buttons:
+       [ − ] [ 1 ] [ + ]
+    inside a non-button container. This is the same interaction pattern used
+    by food-ordering carts and avoids event bubbling/double-click problems.
+  */
+  function refreshMenuQuantityControl(article) {
+    if (!article) return;
+
+    let control = article.querySelector('[data-testid^="add-item-"]');
+    if (!control) return;
 
     const name = article.querySelector('[data-testid^="menu-item-name-"]')?.textContent?.trim() || "";
     const item = cart.get(name);
-    const quantity = item?.quantity || 0;
+    const quantity = Number(item?.quantity || 0);
+    const testId = control.getAttribute("data-testid");
+
+    const baseClass = "flex shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white";
 
     if (quantity > 0) {
-      button.innerHTML = `
-        <span class="menu-qty-wrap flex items-center justify-center w-full h-full gap-1.5">
-          <span class="menu-qty-action inline-flex items-center justify-center min-w-[30px] h-[34px] text-[22px] font-medium leading-none select-none" data-menu-action="decrement" role="button" aria-label="Decrease ${name}">−</span>
-          <span class="menu-qty-count inline-flex items-center justify-center min-w-[26px] h-[34px] text-[18px] font-bold text-center select-none pointer-events-none">${quantity}</span>
-          <span class="menu-qty-action inline-flex items-center justify-center min-w-[30px] h-[34px] text-[22px] font-medium leading-none select-none" data-menu-action="increment" role="button" aria-label="Increase ${name}">+</span>
-        </span>`;
-      button.setAttribute("aria-label", `${name}, quantity ${quantity}`);
-      button.dataset.menuQuantity = "true";
-      button.classList.remove("size-10");
-      button.classList.add("min-w-[104px]", "h-12", "px-3");
-    } else {
-      button.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>`;
-      button.setAttribute("aria-label", `Add ${name} to order`);
-      delete button.dataset.menuQuantity;
-      button.classList.remove("min-w-[86px]", "h-10", "px-2");
-      button.classList.add("size-10");
-    }
-  };
+      /* Replace the old Add button with a proper quantity container. */
+      if (control.tagName !== "DIV" || control.dataset.menuQuantity !== "true") {
+        const wrapper = document.createElement("div");
+        wrapper.className = `${baseClass} menu-quantity-control min-w-[116px] h-12 px-2`;
+        wrapper.setAttribute("data-testid", testId);
+        wrapper.dataset.menuQuantity = "true";
+        wrapper.setAttribute("role", "group");
+        control.replaceWith(wrapper);
+        control = wrapper;
+      }
 
+      control.innerHTML = `
+        <button type="button" class="menu-qty-btn menu-qty-minus" data-menu-action="decrement" aria-label="Decrease ${escapeAttr(name)}">−</button>
+        <span class="menu-qty-count" aria-live="polite">${quantity}</span>
+        <button type="button" class="menu-qty-btn menu-qty-plus" data-menu-action="increment" aria-label="Increase ${escapeAttr(name)}">+</button>
+      `;
+      control.setAttribute("aria-label", `${name}, quantity ${quantity}`);
+    } else {
+      /* Restore a normal Add (+) button. */
+      if (control.tagName !== "BUTTON") {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = `${baseClass} size-10`;
+        button.setAttribute("data-testid", testId);
+        control.replaceWith(button);
+        control = button;
+      }
+
+      control.className = `${baseClass} size-10`;
+      control.removeAttribute("role");
+      delete control.dataset.menuQuantity;
+      control.setAttribute("aria-label", `Add ${name} to order`);
+      control.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14"></path>
+          <path d="M12 5v14"></path>
+        </svg>
+      `;
+      bindAddButton(control);
+    }
+  }
+
+  /* One delegated handler for every quantity button, including buttons that
+     are created later when the menu re-renders. */
   document.addEventListener("click", (event) => {
     const action = event.target.closest("[data-menu-action]");
     if (!action) return;
 
-    const button = action.closest('[data-testid^="add-item-"]');
     const article = action.closest("article");
-    if (!button || !article) return;
+    if (!article) return;
 
     event.preventDefault();
     event.stopPropagation();
@@ -3357,29 +3250,36 @@
     if (!name || !cart.has(name)) return;
 
     const item = cart.get(name);
-    const price = item.price;
 
     if (action.dataset.menuAction === "increment") {
       if (!isMenuItemAvailable(name)) {
         window.alert(`${name} is currently unavailable.`);
         return;
       }
-      cart.set(name, { ...item, quantity: item.quantity + 1 });
+      cart.set(name, { ...item, quantity: Number(item.quantity) + 1 });
     } else if (action.dataset.menuAction === "decrement") {
-      if (item.quantity <= 1) {
+      const nextQuantity = Number(item.quantity) - 1;
+      if (nextQuantity <= 0) {
         cart.delete(name);
       } else {
-        cart.set(name, { ...item, quantity: item.quantity - 1, price });
+        cart.set(name, { ...item, quantity: nextQuantity });
       }
     }
 
     refreshMenuQuantityControl(article);
     renderCart();
+  }, true);
+
+  /* Bind the initial + buttons. */
+  document.querySelectorAll('[data-testid^="add-item-"]').forEach((button) => {
+    bindAddButton(button);
   });
 
-  document.querySelectorAll('[data-testid^="add-item-"]').forEach((button) => {
-    const article = button.closest("article");
-    if (article) refreshMenuQuantityControl(article);
+  /* Draw the correct initial state. */
+  document.querySelectorAll("article").forEach((article) => {
+    if (article.querySelector('[data-testid^="menu-item-name-"]')) {
+      refreshMenuQuantityControl(article);
+    }
   });
 
   /* =========================================================
