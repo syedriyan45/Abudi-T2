@@ -34,6 +34,10 @@
   const AVAILABILITY_KEY =
     "abudi-menu-availability";
 
+  const ADMIN_USERNAME = "admin";
+  const ADMIN_PASSWORD = "abudi@0001";
+  const ADMIN_SESSION_KEY = "abudi-admin-authenticated";
+
 
   /* =========================================================
      STATE
@@ -80,6 +84,13 @@
     document.getElementById(
       "availabilitySection"
     );
+
+  const loginScreen = document.getElementById("loginScreen");
+  const loginForm = document.getElementById("loginForm");
+  const loginUsername = document.getElementById("loginUsername");
+  const loginPassword = document.getElementById("loginPassword");
+  const loginError = document.getElementById("loginError");
+  const logoutButton = document.getElementById("logoutButton");
 
 
   /* =========================================================
@@ -163,6 +174,7 @@
 
   let previousOrderIds = new Set();
   let firestoreInitialized = false;
+  let ordersUnsubscribe = null;
 
 
   /* =========================================================
@@ -170,8 +182,17 @@
   ========================================================= */
 
   function loadOrders() {
+    // Avoid duplicate Firestore listeners after logout/login.
+    if (ordersUnsubscribe) {
+      ordersUnsubscribe();
+      ordersUnsubscribe = null;
+    }
+
+    previousOrderIds = new Set();
+    firestoreInitialized = false;
+
     // Firestore sends the kitchen every order and every update in real time.
-    onSnapshot(
+    ordersUnsubscribe = onSnapshot(
       collection(db, "orders"),
       snapshot => {
         const latestOrders = snapshot.docs.map(item => ({
@@ -277,99 +298,122 @@
 
 
   /* =========================================================
+     ABUDI MASTER MENU
+  ========================================================= */
+
+  const MASTER_MENU = [
+    { category: "ABUDI Special", items: [
+      ["Paneer Cheeze Pocket",199], ["Chicken Cheeze Pocket",219],
+      ["Loaded Chicken Fries",169], ["Cheezy Fries",149]
+    ]},
+    { category: "Milk Shake", items: [
+      ["Oreo Milk Shake",149], ["Kit Kat Milk Shake",149],
+      ["Biscoff Milk Shake",200], ["Chocolate Milk Shake",109],
+      ["Straw Berry Milk Shake",99], ["Nutella Milk Shake",200],
+      ["Butter Scoth Milk Shake",120], ["Dates & Nuts Milk Shake",179]
+    ]},
+    { category: "Mojito's", items: [
+      ["Green Apple",109], ["Blue Berry Mojito",109],
+      ["Raspberry Mojito",109], ["Mint Mojito",109],
+      ["Kiwi Mojito",109], ["Water Melon Mojito",109],
+      ["Blue Curaco",109]
+    ]},
+    { category: "Appetizers", items: [
+      ["French Fries (200gm)",89], ["Peri Peri French Fries (200gm)",109],
+      ["Chicken Loaded Fries",169], ["Garlic Bread (4pc)",110],
+      ["Garlic Cheeze Bread",150], ["Chicken Strips (6pc)",200],
+      ["Chicken Nuggets (6pc)",120], ["Chicken Popcorn (10pc)",149],
+      ["Potato Wedges (8pc)",109], ["Veg Nuggets (6pc)",89]
+    ]},
+    { category: "Burgers & Wrap", items: [
+      ["Veg Burger",109], ["Paneer Burger",129], ["Chicken Burger",149],
+      ["Chicken Zinger Burger",179], ["ABUDI Special Chicken Cheeze Burger",199],
+      ["Veg Wrap",119], ["Paneer Wrap",139], ["Crispy Chicken Wrap",149],
+      ["Chicken Zinger Wrap",179], ["ABUDI Special Chicken Wrap",199]
+    ]},
+    { category: "Hot & Beverages", items: [
+      ["Espresso",80], ["Americano",90], ["Cafe Latte",100],
+      ["Cappuccino",100], ["Caramel",120], ["Cafe Mocha",120],
+      ["Hazel Nut Cappuccino",129], ["Irish Cappuccino",129],
+      ["Hot Chocolate",100]
+    ]},
+    { category: "Cold Coffee & Drinks", items: [
+      ["Cold Coffee (300ml)",180], ["Chocolate Cold Coffee with Ice Cream",200],
+      ["Cold Coffee with Chocolate Ice Cream",230], ["Nutella Frappe",170],
+      ["Iced Americano (60ml)",130], ["Ice Latte (60ml)",150],
+      ["Caramel Iced Latte",159], ["Ice Mocha",159],
+      ["Hazel Nut Iced Latte",189], ["Spanish Latte (60ml)",150]
+    ]},
+    { category: "Abudi Specials", items: [
+      ["Cranberry Special",280], ["Cranberry Single",120],
+      ["Cranberry Double",150], ["Classic Cold Brew (Honey with cinnamon)",180],
+      ["Bour Bourn",220]
+    ]},
+    { category: "Desserts", items: [
+      ["Choco Lava",119], ["Choco Lava (with ice cream)",159],
+      ["Sizzling Brownie",139], ["Brownie with ice cream",169],
+      ["Pan Cake (Blue Berry / Strawberry / Banana)",0]
+    ]},
+    { category: "Pasta", items: [
+      ["Veg Classic Alfredo",189], ["Spaghetti (Italian Pasta)",199],
+      ["Chicken Alfredo",249], ["Spaghetti Chicken (Italian Pasta)",260],
+      ["Basil Chicken Pasta",299], ["Veg Basil Pasta",249]
+    ]},
+    { category: "Sandwich", items: [
+      ["Veg Sandwich",110], ["Spiced Paneer Sandwich",120],
+      ["Chicken Cheeze Sandwich",139], ["ABUDI Special Chicken Sandwich",149]
+    ]},
+    { category: "Pizza", items: [
+      ["Margherita",169], ["Veg Loaded Pizza",189], ["Spicy Paneer Pizza",199],
+      ["Corn Cheeze Corn Pizza",179], ["Chicken Tikka Pizza",229],
+      ["Peri Peri Chicken Pizza",249], ["ABUDI Special Pizza",349],
+      ["Chicken Loaded Pizza",299]
+    ]}
+  ];
+
+  /* =========================================================
      GET MENU ITEMS
   ========================================================= */
 
   function getMenuItems() {
-
     const items = new Map();
 
-
-    /*
-      Get items from orders.
-      This means every item that has
-      been ordered will appear here.
-    */
+    MASTER_MENU.forEach(section => {
+      section.items.forEach(([name, price]) => {
+        items.set(name, {
+          name,
+          price,
+          category: section.category
+        });
+      });
+    });
 
     orders.forEach(order => {
-
-      if (
-        !Array.isArray(
-          order.items
-        )
-      ) {
-        return;
-      }
-
+      if (!Array.isArray(order.items)) return;
       order.items.forEach(item => {
-
-        if (
-          !item ||
-          !item.name
-        ) {
-          return;
-        }
-
-        const name =
-          String(item.name).trim();
-
-        if (!name) return;
-
-        if (!items.has(name)) {
-
-          items.set(
-            name,
-            {
-              name,
-              price:
-                Number(
-                  item.price || 0
-                )
-            }
-          );
-
-        }
-
-      });
-
-    });
-
-
-    /*
-      Also include items saved by
-      customer app.js.
-    */
-
-    Object.keys(
-      availability
-    ).forEach(name => {
-
-      if (!items.has(name)) {
-
-        items.set(
+        if (!item || !item.name) return;
+        const name = String(item.name).trim();
+        if (!name || items.has(name)) return;
+        items.set(name, {
           name,
-          {
-            name,
-            price: 0
-          }
-        );
-
-      }
-
+          price: Number(item.price || 0),
+          category: "Other"
+        });
+      });
     });
 
+    Object.keys(availability).forEach(name => {
+      if (!items.has(name)) {
+        items.set(name, {
+          name,
+          price: 0,
+          category: "Other"
+        });
+      }
+    });
 
-    return [
-      ...items.values()
-    ].sort(
-      (a, b) =>
-        a.name.localeCompare(
-          b.name
-        )
-    );
-
+    return [...items.values()];
   }
-
 
   /* =========================================================
      CHECK ITEM AVAILABILITY
@@ -411,129 +455,67 @@
   ========================================================= */
 
   function renderAvailability() {
+    const menuItems = getMenuItems();
 
-    const menuItems =
-      getMenuItems();
+    const availableItems = menuItems.filter(
+      item => isAvailable(item.name)
+    );
 
-
-    const availableItems =
-      menuItems.filter(
-        item =>
-          isAvailable(
-            item.name
-          )
-      );
-
-
-    availableCount.textContent =
-      String(
-        availableItems.length
-      );
-
+    availableCount.textContent = String(availableItems.length);
 
     if (!menuItems.length) {
-
       menuGrid.innerHTML = "";
-
       noMenu.hidden = false;
-
       return;
-
     }
-
 
     noMenu.hidden = true;
 
+    const grouped = new Map();
+    menuItems.forEach(item => {
+      const category = item.category || "Other";
+      if (!grouped.has(category)) grouped.set(category, []);
+      grouped.get(category).push(item);
+    });
 
-    menuGrid.innerHTML =
-      menuItems.map(
-        item => {
-
-          const available =
-            isAvailable(
-              item.name
-            );
-
+    menuGrid.innerHTML = [...grouped.entries()].map(
+      ([category, categoryItems]) => `
+        <div style="grid-column:1/-1;">
+          <h3 style="margin:10px 0 0;font-size:18px;color:var(--copper);">
+            ${escapeHtml(category)}
+          </h3>
+        </div>
+        ${categoryItems.map(item => {
+          const available = isAvailable(item.name);
           return `
-
             <div class="menu-card">
-
               <div class="menu-info">
-
-                <div class="menu-name">
-
-                  ${escapeHtml(
-                    item.name
-                  )}
-
-                </div>
-
+                <div class="menu-name">${escapeHtml(item.name)}</div>
                 ${
                   item.price
-                    ? `
-                      <div class="menu-price">
-
-                        ${money(
-                          item.price
-                        )}
-
-                      </div>
-                    `
-                    : ""
+                    ? `<div class="menu-price">${money(item.price)}</div>`
+                    : `<div class="menu-price">Price not specified</div>`
                 }
-
-                <span
-                  class="
-                    availability-status
-                    ${
-                      available
-                        ? "available"
-                        : "unavailable"
-                    }
-                  ">
-
-                  ${
-                    available
-                      ? "Available"
-                      : "Not Available"
-                  }
-
+                <span class="availability-status ${
+                  available ? "available" : "unavailable"
+                }">
+                  ${available ? "Available" : "Not Available"}
                 </span>
-
               </div>
-
-
               <button
                 type="button"
-                class="
-                  availability-toggle
-                  ${
-                    available
-                      ? "available"
-                      : "unavailable"
-                  }
-                "
-                data-availability-name="${escapeHtml(
-                  item.name
-                )}">
-
-                ${
-                  available
-                    ? "Disable"
-                    : "Enable"
-                }
-
+                class="availability-toggle ${
+                  available ? "available" : "unavailable"
+                }"
+                data-availability-name="${escapeHtml(item.name)}">
+                ${available ? "Disable" : "Enable"}
               </button>
-
             </div>
-
           `;
-
-        }
-      ).join("");
-
+        }).join("")}
+      `
+    ).join("");
   }
-
 
   /* =========================================================
      AVAILABILITY CLICK
@@ -1493,98 +1475,47 @@
   ========================================================= */
 
   function playNotificationSound() {
-
-    if (!soundEnabled) {
-      return;
-    }
-
+    if (!soundEnabled) return;
 
     try {
-
       const AudioContext =
-        window.AudioContext ||
-        window.webkitAudioContext;
+        window.AudioContext || window.webkitAudioContext;
 
+      if (!AudioContext) return;
 
-      if (!AudioContext) {
-        return;
+      const audio = new AudioContext();
+      const now = audio.currentTime;
+
+      if (audio.state === "suspended") {
+        audio.resume().catch(() => {});
       }
 
+      // Loud repeating kitchen bell: three clear tones.
+      [
+        [880, 0.00],
+        [1175, 0.42],
+        [880, 0.84]
+      ].forEach(([frequency, offset]) => {
+        const osc = audio.createOscillator();
+        const gain = audio.createGain();
 
-      const audio =
-        new AudioContext();
+        osc.type = "square";
+        osc.frequency.setValueAtTime(frequency, now + offset);
 
+        gain.gain.setValueAtTime(0.001, now + offset);
+        gain.gain.exponentialRampToValueAtTime(0.60, now + offset + 0.025);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + offset + 0.34);
 
-      const oscillator =
-        audio.createOscillator();
+        osc.connect(gain);
+        gain.connect(audio.destination);
+        osc.start(now + offset);
+        osc.stop(now + offset + 0.36);
+      });
 
-
-      const gain =
-        audio.createGain();
-
-
-      oscillator.type =
-        "sine";
-
-
-      oscillator.frequency.setValueAtTime(
-        700,
-        audio.currentTime
-      );
-
-
-      oscillator.frequency
-        .exponentialRampToValueAtTime(
-          1000,
-          audio.currentTime +
-            0.15
-        );
-
-
-      gain.gain.setValueAtTime(
-        0.001,
-        audio.currentTime
-      );
-
-
-      gain.gain
-        .exponentialRampToValueAtTime(
-          0.25,
-          audio.currentTime +
-            0.02
-        );
-
-
-      gain.gain
-        .exponentialRampToValueAtTime(
-          0.001,
-          audio.currentTime +
-            0.5
-        );
-
-
-      oscillator.connect(
-        gain
-      );
-
-      gain.connect(
-        audio.destination
-      );
-
-
-      oscillator.start();
-
-      oscillator.stop(
-        audio.currentTime +
-          0.5
-      );
-
+      setTimeout(() => audio.close().catch(() => {}), 1500);
     } catch {
-
-      // Browser can block audio.
-
+      // Browsers may block audio until the admin has interacted with the page.
     }
-
   }
 
 
@@ -1605,6 +1536,87 @@
   );
 
 
+
+  /* =========================================================
+     ADMIN LOGIN / LOGOUT
+  ========================================================= */
+
+  function setOrdersAsDefault() {
+    ordersSection.classList.remove("hidden");
+    availabilitySection.classList.add("hidden");
+
+    document.querySelectorAll("[data-main-tab]").forEach(button => {
+      button.classList.toggle(
+        "active",
+        button.dataset.mainTab === "orders"
+      );
+    });
+  }
+
+  function setAdminLoggedIn(loggedIn) {
+    if (loggedIn) {
+      sessionStorage.setItem(ADMIN_SESSION_KEY, "true");
+      loginScreen.style.display = "none";
+      document.body.style.overflow = "";
+
+      // Orders are always the first page after login.
+      setOrdersAsDefault();
+      soundEnabled = true;
+      soundButton.textContent = "🔔 Sound: On";
+
+      loadOrders();
+      loadAvailability();
+    } else {
+      sessionStorage.removeItem(ADMIN_SESSION_KEY);
+      if (ordersUnsubscribe) {
+        ordersUnsubscribe();
+        ordersUnsubscribe = null;
+      }
+      loginScreen.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    }
+  }
+
+  loginForm.addEventListener("submit", event => {
+    event.preventDefault();
+
+    const username = loginUsername.value.trim();
+    const password = loginPassword.value;
+
+    if (
+      username === ADMIN_USERNAME &&
+      password === ADMIN_PASSWORD
+    ) {
+      loginError.textContent = "";
+      setAdminLoggedIn(true);
+
+      if (
+        "Notification" in window &&
+        Notification.permission === "default"
+      ) {
+        Notification.requestPermission();
+      }
+    } else {
+      loginError.textContent = "Invalid username or password.";
+      loginPassword.value = "";
+      loginPassword.focus();
+    }
+  });
+
+  logoutButton.addEventListener("click", () => {
+    if (window.confirm("Logout from ABUDI Admin?")) {
+      setAdminLoggedIn(false);
+    }
+  });
+
+  if (
+    sessionStorage.getItem(ADMIN_SESSION_KEY) === "true"
+  ) {
+    setAdminLoggedIn(true);
+  } else {
+    setAdminLoggedIn(false);
+  }
+
   /* =========================================================
      REAL-TIME FIRESTORE ORDERS
   ========================================================= */
@@ -1618,47 +1630,6 @@
      NOTIFICATIONS
   ========================================================= */
 
-  if (
-    "Notification" in
-      window &&
-    Notification.permission ===
-      "default"
-  ) {
-
-    setTimeout(
-      () => {
-
-        Notification
-          .requestPermission();
-
-      },
-      1500
-    );
-
-  }
-
-
-  /* =========================================================
-     INITIALIZE
-  ========================================================= */
-
-  let firstFirestoreSnapshot = true;
-
-  // Wrap the Firestore listener once so the first snapshot does not notify.
-  const originalLoadOrders = loadOrders;
-  // previousOrderIds is used by loadOrders after the first snapshot.
-  // Start empty; the listener will establish the initial set.
-  var previousOrderIds = new Set();
-
-  originalLoadOrders();
-  loadAvailability();
-
-  // Ask for notification permission after the page is loaded.
-  if (
-    "Notification" in window &&
-    Notification.permission === "default"
-  ) {
-    setTimeout(() => Notification.requestPermission(), 1500);
-  }
+  /* Initialization starts after successful admin login. */
 
 })();
