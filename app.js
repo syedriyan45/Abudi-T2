@@ -2989,9 +2989,8 @@
     /* Reset every menu item control after the order is placed.
        Previously the cart was cleared, but the visible menu buttons
        still showed the old quantity such as − 2 +. */
-    document.querySelectorAll('[data-testid^="add-item-"]').forEach((button) => {
-      const article = button.closest("article");
-      if (article) refreshMenuQuantityControl(article);
+    document.querySelectorAll('article[data-testid^="menu-item-"]').forEach((article) => {
+      refreshMenuQuantityControl(article);
     });
 
 
@@ -3121,248 +3120,219 @@
 
   /* =========================================================
      ADD TO CART
+     Uses delegated clicks so the ADD button still works after
+     quantity controls are replaced on mobile/desktop.
   ========================================================= */
 
-  document
-    .querySelectorAll(
-      '[data-testid^="add-item-"]'
-    )
-    .forEach(
-      button => {
+  document.addEventListener("click", (event) => {
+    const addButton = event.target.closest('[data-testid^="add-item-"]');
 
-        button.addEventListener(
-          "click",
-          event => {
+    if (!addButton || event.target.closest("[data-menu-action]")) {
+      return;
+    }
 
-            /* Quantity controls inside the button have their own handler. */
-            if (event.target.closest("[data-menu-action]")) {
-              return;
-            }
+    if (addButton.disabled) {
+      return;
+    }
 
-            /*
-              Stop unavailable item.
-            */
+    const article = addButton.closest("article");
+    if (!article) return;
 
-            if (
-              button.disabled
-            ) {
+    const name =
+      article
+        ?.querySelector('[data-testid^="menu-item-name-"]')
+        ?.textContent
+        .trim() || "Menu item";
 
-              return;
+    if (!isMenuItemAvailable(name)) {
+      window.alert(`${name} is currently unavailable.`);
+      updateMenuAvailabilityUI();
+      return;
+    }
 
-            }
-
-
-            const article =
-              button.closest(
-                "article"
-              );
-
-
-            const name =
-              article
-                ?.querySelector(
-                  '[data-testid^="menu-item-name-"]'
-                )
-                ?.textContent
-                .trim() ||
-              "Menu item";
-
-
-            /*
-              Double-check availability.
-            */
-
-            if (
-              !isMenuItemAvailable(
-                name
-              )
-            ) {
-
-              window.alert(
-                `${name} is currently unavailable.`
-              );
-
-              updateMenuAvailabilityUI();
-
-              return;
-
-            }
-
-
-            const price =
-              parsePrice(
-                article
-                  ?.querySelector(
-                    '[data-testid^="menu-item-price-"]'
-                  )
-                  ?.textContent ||
-                  "0"
-              );
-
-
-            const existing =
-              cart.get(
-                name
-              );
-
-
-            cart.set(
-              name,
-              {
-
-                name,
-
-                price,
-
-                quantity:
-                  (
-                    existing?.quantity ||
-                    0
-                  ) + 1
-
-              }
-            );
-
-            refreshMenuQuantityControl(article);
-
-
-            /*
-              Button animation.
-            */
-
-            button.animate(
-              [
-                {
-                  transform:
-                    "scale(1)"
-                },
-
-                {
-                  transform:
-                    "scale(.88)"
-                },
-
-                {
-                  transform:
-                    "scale(1)"
-                }
-              ],
-
-              {
-                duration: 220,
-
-                easing:
-                  "ease-out"
-              }
-            );
-
-
-            renderCart();
-
-
-            /*
-              Sticky cart animation.
-            */
-
-            stickyCart.animate(
-              [
-                {
-                  transform:
-                    "translate(-50%, 8px)"
-                },
-
-                {
-                  transform:
-                    "translate(-50%, -3px)"
-                },
-
-                {
-                  transform:
-                    "translate(-50%, 0)"
-                }
-              ],
-
-              {
-                duration: 350,
-
-                easing:
-                  "cubic-bezier(.22,1,.36,1)"
-              }
-            );
-
-          }
-        );
-
-      }
+    const price = parsePrice(
+      article
+        ?.querySelector('[data-testid^="menu-item-price-"]')
+        ?.textContent || "0"
     );
 
+    const existing = cart.get(name);
+
+    cart.set(name, {
+      name,
+      price,
+      quantity: (existing?.quantity || 0) + 1
+    });
+
+    refreshMenuQuantityControl(article);
+    renderCart();
+
+    stickyCart.animate(
+      [
+        { transform: "translate(-50%, 8px)" },
+        { transform: "translate(-50%, -3px)" },
+        { transform: "translate(-50%, 0)" }
+      ],
+      {
+        duration: 350,
+        easing: "cubic-bezier(.22,1,.36,1)"
+      }
+    );
+  });
 
 
   /* =========================================================
      MENU ITEM QUANTITY CONTROLS
-     First tap: + becomes  − 1 +
+     Mobile-friendly: ADD ->  −  1  +
+     Uses real buttons for reliable iPhone touch interaction.
   ========================================================= */
 
   const refreshMenuQuantityControl = (article) => {
-
     if (!article) return;
 
-    const button = article.querySelector('[data-testid^="add-item-"]');
-    if (!button) return;
+    const currentControl =
+      article.querySelector(
+        '[data-testid^="add-item-"], .menu-quantity-control'
+      );
 
-    const name = article.querySelector('[data-testid^="menu-item-name-"]')?.textContent?.trim() || "";
+    if (!currentControl) return;
+
+    const name =
+      article
+        .querySelector('[data-testid^="menu-item-name-"]')
+        ?.textContent
+        ?.trim() || "";
+
     const item = cart.get(name);
     const quantity = item?.quantity || 0;
 
     if (quantity > 0) {
-      button.innerHTML = `
-        <span class="flex items-center justify-center gap-2 w-full h-full">
-          <span class="menu-qty-action text-lg leading-none" data-menu-action="decrement">−</span>
-          <span class="menu-qty-count text-sm font-bold min-w-[18px] text-center">${quantity}</span>
-          <span class="menu-qty-action text-lg leading-none" data-menu-action="increment">+</span>
-        </span>`;
-      button.setAttribute("aria-label", `${name}, quantity ${quantity}`);
-      button.dataset.menuQuantity = "true";
-      button.classList.remove("size-10");
-      button.classList.add("min-w-[86px]", "h-10", "px-2");
+      if (currentControl.classList.contains("menu-quantity-control")) {
+        const count = currentControl.querySelector(".menu-qty-count");
+        if (count) count.textContent = quantity;
+        currentControl.setAttribute(
+          "aria-label",
+          `${name}, quantity ${quantity}`
+        );
+        return;
+      }
+
+      const control = document.createElement("div");
+
+      control.className = "menu-quantity-control";
+      control.setAttribute("role", "group");
+      control.setAttribute(
+        "aria-label",
+        `${name}, quantity ${quantity}`
+      );
+
+      control.innerHTML = `
+        <button
+          type="button"
+          class="menu-qty-btn menu-qty-minus"
+          data-menu-action="decrement"
+          aria-label="Decrease ${name} quantity"
+        >−</button>
+
+        <span
+          class="menu-qty-count"
+          aria-live="polite"
+        >${quantity}</span>
+
+        <button
+          type="button"
+          class="menu-qty-btn menu-qty-plus"
+          data-menu-action="increment"
+          aria-label="Increase ${name} quantity"
+        >+</button>
+      `;
+
+      currentControl.replaceWith(control);
     } else {
-      button.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>`;
-      button.setAttribute("aria-label", `Add ${name} to order`);
-      delete button.dataset.menuQuantity;
-      button.classList.remove("min-w-[86px]", "h-10", "px-2");
-      button.classList.add("size-10");
+      const addButton = document.createElement("button");
+
+      addButton.type = "button";
+      addButton.className =
+        "flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface-strong)] text-[var(--copper)] hover:bg-[var(--copper)] hover:text-white";
+      addButton.setAttribute(
+        "aria-label",
+        `Add ${name} to order`
+      );
+
+      const testId =
+        currentControl.getAttribute("data-testid") ||
+        `add-item-${name.toLowerCase().replace(/\s+/g, "-")}`;
+
+      addButton.setAttribute("data-testid", testId);
+
+      addButton.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg"
+          width="24" height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-plus size-4"
+          aria-hidden="true">
+          <path d="M5 12h14"></path>
+          <path d="M12 5v14"></path>
+        </svg>
+      `;
+
+      currentControl.replaceWith(addButton);
     }
   };
 
+
   document.addEventListener("click", (event) => {
-    const action = event.target.closest("[data-menu-action]");
+    const action =
+      event.target.closest("[data-menu-action]");
+
     if (!action) return;
 
-    const button = action.closest('[data-testid^="add-item-"]');
-    const article = action.closest("article");
-    if (!button || !article) return;
+    const control =
+      action.closest(".menu-quantity-control");
+
+    const article =
+      action.closest("article");
+
+    if (!control || !article) return;
 
     event.preventDefault();
     event.stopPropagation();
 
-    const name = article.querySelector('[data-testid^="menu-item-name-"]')?.textContent?.trim() || "";
+    const name =
+      article
+        .querySelector('[data-testid^="menu-item-name-"]')
+        ?.textContent
+        ?.trim() || "";
+
     if (!name || !cart.has(name)) return;
 
     const item = cart.get(name);
-    const price = item.price;
 
     if (action.dataset.menuAction === "increment") {
       if (!isMenuItemAvailable(name)) {
         window.alert(`${name} is currently unavailable.`);
         return;
       }
-      cart.set(name, { ...item, quantity: item.quantity + 1 });
-    } else if (action.dataset.menuAction === "decrement") {
+
+      cart.set(name, {
+        ...item,
+        quantity: item.quantity + 1
+      });
+    }
+
+    if (action.dataset.menuAction === "decrement") {
       if (item.quantity <= 1) {
         cart.delete(name);
       } else {
-        cart.set(name, { ...item, quantity: item.quantity - 1, price });
+        cart.set(name, {
+          ...item,
+          quantity: item.quantity - 1
+        });
       }
     }
 
@@ -3370,10 +3340,15 @@
     renderCart();
   });
 
-  document.querySelectorAll('[data-testid^="add-item-"]').forEach((button) => {
-    const article = button.closest("article");
-    if (article) refreshMenuQuantityControl(article);
-  });
+
+  document
+    .querySelectorAll('[data-testid^="add-item-"]')
+    .forEach((button) => {
+      const article = button.closest("article");
+      if (article) {
+        refreshMenuQuantityControl(article);
+      }
+    });
 
   /* =========================================================
      INITIALIZE
