@@ -1,22 +1,5 @@
-// Firebase / Firestore
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-  import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyCHmFL2Mq8h84tSM0DhMI43mf7rgcIeuqg",
-    authDomain: "abudi-cafe.firebaseapp.com",
-    projectId: "abudi-cafe",
-    storageBucket: "abudi-cafe.firebasestorage.app",
-    messagingSenderId: "1051106284305",
-    appId: "1:1051106284305:web:510db4835c5f91d0bc72b0"
-  };
-
-  const firebaseApp = initializeApp(firebaseConfig);
-  const db = getFirestore(firebaseApp);
-
 (() => {
   "use strict";
-
 
   const root = document.documentElement;
   const cart = new Map();
@@ -26,6 +9,7 @@
   ========================================================= */
 
   const ORDERS_KEY = "abudi-orders";
+  const LAST_ORDER_KEY = "abudi-last-placed-order";
   const AVAILABILITY_KEY = "abudi-menu-availability";
 
   /*
@@ -620,6 +604,50 @@
     }
 
 
+    .local-last-order {
+      margin: 10px 0;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--surface);
+    }
+
+    .local-last-order-status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--copper);
+      font-weight: 700;
+    }
+
+    .local-last-order-id {
+      margin-top: 6px;
+      color: var(--text-dim);
+      font-size: 12px;
+    }
+
+    .local-last-order-items {
+      margin-top: 14px;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .local-last-order-row,
+    .local-last-order-total {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .local-last-order-total {
+      border-bottom: 0;
+      padding-bottom: 0;
+      font-size: 16px;
+    }
+
     .local-cart-footer {
       padding-top: 18px;
 
@@ -990,14 +1018,43 @@
       }
     }
 
+
+    /* =========================================================
+       SEARCH CLEAR BUTTON
+    ========================================================= */
+
+    .abudi-search-clear {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--text-dim);
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .abudi-search-clear:hover {
+      color: var(--copper);
+      background: var(--surface-strong);
+    }
+
+    [data-testid="menu-search-input"] {
+      padding-right: 48px !important;
+    }
+
   `;
 
   document.head.appendChild(styles);
 
-
-  /* =========================================================
-     THEME
-  ========================================================= */
 
   const themeButton =
     document.querySelector(
@@ -1060,6 +1117,28 @@
     'input[placeholder="Search the menu"]'
   );
 
+  let searchClearButton = null;
+
+  if (searchInput) {
+    const searchWrap = searchInput.parentElement;
+    if (searchWrap) {
+      searchWrap.style.position = "relative";
+      searchClearButton = document.createElement("button");
+      searchClearButton.type = "button";
+      searchClearButton.className = "abudi-search-clear";
+      searchClearButton.setAttribute("aria-label", "Clear search");
+      searchClearButton.setAttribute("title", "Clear search");
+      searchClearButton.innerHTML = "×";
+      searchClearButton.hidden = true;
+      searchWrap.appendChild(searchClearButton);
+      searchClearButton.addEventListener("click", () => {
+        searchInput.value = "";
+        searchInput.focus();
+        applyFilters();
+      });
+    }
+  }
+
   let activeCategory = "all";
 
   const setButtonState = (button, active) => {
@@ -1095,6 +1174,10 @@
     const query = (searchInput?.value || "")
       .trim()
       .toLowerCase();
+
+    if (searchClearButton) {
+      searchClearButton.hidden = !query;
+    }
 
     let totalVisible = 0;
 
@@ -1765,6 +1848,60 @@
 
 
   /* =========================================================
+     LAST PLACED ORDER
+     Keep the customer's most recent order visible after checkout.
+  ========================================================= */
+
+  function getLastPlacedOrder() {
+    try {
+      const order = JSON.parse(localStorage.getItem(LAST_ORDER_KEY) || "null");
+      return order && typeof order === "object" ? order : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function saveLastPlacedOrder(order) {
+    try {
+      localStorage.setItem(LAST_ORDER_KEY, JSON.stringify(order));
+    } catch {
+      // Ignore storage errors.
+    }
+  }
+
+  function renderLastPlacedOrder(order) {
+    if (!order || !Array.isArray(order.items) || !order.items.length) {
+      return `
+        <div class="local-cart-empty">
+          Your table is waiting for something good.
+        </div>`;
+    }
+
+    return `
+      <div class="local-last-order">
+        <div class="local-last-order-status">
+          <span>Sent to kitchen</span>
+          <span>●</span>
+        </div>
+        <div class="local-last-order-id">
+          ${escapeHtml(order.id || "")} · Table ${escapeHtml(order.table || TABLE_NUMBER)}
+        </div>
+        <div class="local-last-order-items">
+          ${order.items.map(item => `
+            <div class="local-last-order-row">
+              <span>${escapeHtml(item.name)} ×${Number(item.quantity || 0)}</span>
+              <span>${money(Number(item.price || 0) * Number(item.quantity || 0))}</span>
+            </div>`).join("")}
+        </div>
+        <div class="local-last-order-total">
+          <span>Total so far</span>
+          <strong>${money(order.total)}</strong>
+        </div>
+      </div>`;
+  }
+
+
+  /* =========================================================
      RENDER CART
   ========================================================= */
 
@@ -2001,17 +2138,9 @@
                   `
                 ).join("")
 
-              : `
-
-                <div
-                  class="local-cart-empty">
-
-                  Your table is waiting
-                  for something good.
-
-                </div>
-
-              `
+              : renderLastPlacedOrder(
+                  getLastPlacedOrder()
+                )
           }
 
         </div>
@@ -2703,11 +2832,15 @@
      SUBMIT ORDER
   ========================================================= */
 
-  async function submitOrder(
+  function submitOrder(
     items,
     total,
     customer
   ) {
+
+    /*
+      Final availability check.
+    */
 
     const unavailableItems =
       items.filter(
@@ -2717,65 +2850,174 @@
           )
       );
 
-    if (unavailableItems.length) {
+
+    if (
+      unavailableItems.length
+    ) {
+
       window.alert(
         "Sorry, these items are currently unavailable: " +
-        unavailableItems.map(item => item.name).join(", ")
+        unavailableItems
+          .map(
+            item =>
+              item.name
+          )
+          .join(", ")
       );
-      checkoutStep = false;
+
+      checkoutStep =
+        false;
+
       renderCart();
+
       return;
+
     }
+
 
     const order = {
-      id: `ORD-${Date.now().toString(36).toUpperCase()}`,
-      table: TABLE_NUMBER,
-      items: items.map(({ name, price, quantity }) => ({
-        name,
-        price,
-        quantity
-      })),
+
+      id:
+        `ORD-${Date.now()
+          .toString(36)
+          .toUpperCase()}`,
+
+      /*
+        Table comes from QR URL.
+      */
+
+      table:
+        TABLE_NUMBER,
+
+      items:
+        items.map(
+          ({
+            name,
+            price,
+            quantity
+          }) => ({
+
+            name,
+
+            price,
+
+            quantity
+
+          })
+        ),
+
       total,
+
       customer,
-      placedAt: new Date().toISOString(),
-      status: "new"
+
+      placedAt:
+        new Date()
+          .toISOString(),
+
+      status:
+        "new"
+
     };
 
+
+    let orders = [];
+
+
     try {
-      // Save centrally in Firestore so the kitchen can see it
-      // from any phone, tablet or computer.
-      await setDoc(
-        doc(db, "orders", order.id),
-        order
-      );
-    } catch (error) {
-      console.error("Firebase order error:", error);
-      window.alert(
-        "Order could not be sent to the kitchen. Please check your internet connection and try again."
-      );
-      return;
+
+      orders =
+        JSON.parse(
+          localStorage.getItem(
+            ORDERS_KEY
+          ) || "[]"
+        );
+
+
+      if (
+        !Array.isArray(
+          orders
+        )
+      ) {
+
+        orders = [];
+
+      }
+
+    } catch {
+
+      orders = [];
+
     }
 
-    // Keep the old local event for any code running on this same page.
-    window.dispatchEvent(
-      new CustomEvent(
-        "abudi-orders-updated",
-        { detail: order }
+
+    orders.push(
+      order
+    );
+
+
+    localStorage.setItem(
+      ORDERS_KEY,
+      JSON.stringify(
+        orders
       )
     );
 
+    saveLastPlacedOrder(order);
+
+
+    /*
+      Tell other code on this page.
+    */
+
+    window.dispatchEvent(
+      new CustomEvent(
+        "abudi-orders-updated",
+        {
+          detail:
+            order
+        }
+      )
+    );
+
+
+    /*
+      Clear cart.
+    */
+
     cart.clear();
-    checkoutStep = false;
+
+    /* Reset every menu item control after the order is placed.
+       Previously the cart was cleared, but the visible menu buttons
+       still showed the old quantity such as − 2 +. */
+    document.querySelectorAll('[data-testid^="add-item-"]').forEach((button) => {
+      const article = button.closest("article");
+      if (article) refreshMenuQuantityControl(article);
+    });
+
+
+    checkoutStep =
+      false;
+
 
     customerInfo = {
+
       name: "",
+
       phone: "",
+
       notes: ""
+
     };
 
+
     fieldErrors = {};
+
+
     renderCart();
+
+
     closeCart();
+
 
     window.alert(
       `Thanks ${customer.name}! Order ${order.id} has been sent to the kitchen.`
@@ -2890,7 +3132,12 @@
 
         button.addEventListener(
           "click",
-          () => {
+          event => {
+
+            /* Quantity controls inside the button have their own handler. */
+            if (event.target.closest("[data-menu-action]")) {
+              return;
+            }
 
             /*
               Stop unavailable item.
