@@ -1667,5 +1667,36 @@ article[data-testid^="menu-item-"] > .menu-quantity-control {
 
 
 
+
+<script id="abudi-dynamic-table-number">
+(function () {
+  function updateTableNumber() {
+    const params = new URLSearchParams(window.location.search);
+    const rawTable = params.get('t');
+    const tableNumber = rawTable && /^[1-6]$/.test(rawTable) ? rawTable : '1';
+
+    const header = document.querySelector('[data-testid="table-number-display"]');
+    if (header) {
+      const span = header.querySelector('span');
+      if (span) span.textContent = tableNumber;
+      else header.textContent = 'TABLE ' + tableNumber;
+    }
+
+    const note = document.querySelector('[data-testid="hero-table-note"]');
+    if (note) {
+      const span = note.querySelector('span');
+      if (span) span.textContent = tableNumber;
+      else note.textContent = 'ORDERING FOR TABLE ' + tableNumber;
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateTableNumber);
+  } else {
+    updateTableNumber();
+  }
+})();
+</script>
+
 </body>
 </html>
